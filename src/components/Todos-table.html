@@ -1,0 +1,31 @@
+
+<section class="todos-table">
+  <div class="row mx-0 flex-column flex-md-row align-items-start justify-content-center">
+    <div class="table-container col-12 col-md-5">
+      <div class="row align-items-center justify-content-between">
+        <h2>Pending Tasks</h2>
+        <b-form-input class="col-8" id="pending-search" type="search"></b-form-input>
+      </div>
+      <ul class="todos" v-if="todosFiltered && todosFiltered.length">
+        <li class="todos_item" v-for="(todo, index) in todosFiltered" :key="index">
+          <b-form-checkbox class="todos_item-checkbox" :id="'checkbox' + index" @change=(changeTodoStatus(todo)) :disabled="!todo.id">
+          </b-form-checkbox>
+          <div class="todos_item-description">
+            <b-form-input :id="'description' + index" type="text" v-model="todo.description" :class="todo.description ? 'not-empty' : ''">
+            </b-form-input>
+            <i class="fas fa-times icon icon_cancel"></i>
+            <i class="fas fa-check icon icon_check"></i>
+          </div>
+          <i class="fas fa-trash-alt icon todos_item-delete"></i>
+        </li>
+      </ul>
+      <b-button class="btn-add" @click="createEmptyTodo()">
+        <i class="fas fa-plus"></i>
+      </b-button>
+    </div>
+    <div class="table-container col-12 col-md-5">
+      <b-table striped hover :fields="[]" :items="todosCompletedFiltered"></b-table>
+    </div>
+  </div>
+</section>
+

@@ -1,0 +1,6 @@
+$parentSize: 16px;
+// calculate Rem
+@function calculateRem($size) {
+  $remSize: $size / $parentSize;
+  @return #{$remSize}rem;
+}

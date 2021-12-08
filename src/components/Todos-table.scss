@@ -1,0 +1,70 @@
+@import '/src/assets/scss/base.scss';
+
+.table-container {
+  padding: calculateRem(20px);
+  border: 1px solid $c-color2;
+  &:first-child {
+    margin-right: calculateRem(10px);
+  }
+  .row {
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 10px;
+    h2 {
+      margin-right: 0.5rem;
+    }
+  }
+  .todos {
+    width: 100%;
+    &_item {
+      width: 100%;
+      display: flex;
+      text-align: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+
+      &-checkbox {
+        margin-top: 6px;
+      }
+      
+      &-description {
+        position: relative;
+        width: calc(100% - 70px);
+
+        .icon {
+          position: absolute;
+          right: 15px;
+          bottom: 9px;
+          width: 20px;
+          height: 20px;
+          line-height: 20px;
+          display: none;
+
+          &_cancel {
+            right: 40px;
+          }
+        }
+
+        input {
+          width: calc(100% - 2 * 0.75rem - 2px);
+          
+          &.not-empty {
+            width: calc(100% - 0.75rem - 60px - 2px);
+            padding-right: 60px;
+            & ~ .icon {
+              display: block;
+            }
+          }
+        }
+      }
+
+      &-delete {
+        width: 26px;
+        height: 26px;
+        line-height: 26px;
+        font-size: 20px;
+        margin-top: 6px;
+      }
+    }
+  }
+}

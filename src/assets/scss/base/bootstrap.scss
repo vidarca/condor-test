@@ -1,0 +1,71 @@
+//compose your bootstrap-vue css build
+
+// ============ FUNCTIONS ==============
+@import "~bootstrap/scss/functions.scss";
+
+// ============ MIXINS ==============
+@import "~bootstrap/scss/mixins";
+
+// ============ VENDOR ==============
+@import "~bootstrap/scss/vendor/rfs.scss";
+
+// ============ STYLES ==============
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/input-group";
+@import "~bootstrap/scss/custom-forms";
+@import "~bootstrap/scss/spinners";
+@import "~bootstrap/scss/tables";
+
+//=============== UTILITIES =================
+@import "~bootstrap/scss/utilities/background";
+@import "~bootstrap/scss/utilities/borders";
+@import "~bootstrap/scss/utilities/clearfix";
+@import "~bootstrap/scss/utilities/display";
+@import "~bootstrap/scss/utilities/flex";
+@import "~bootstrap/scss/utilities/shadows";
+@import "~bootstrap/scss/utilities/sizing";
+@import "~bootstrap/scss/utilities/spacing";
+@import "~bootstrap/scss/utilities/text";
+
+//====================================================
+//===================BOOTSTRAP-VUE====================
+//====================================================
+
+// @import "~bootstrap-vue/src/variables";
+//======================= BASE =======================
+@import "~bootstrap-vue/src/utilities";
+@import "~bootstrap-vue/src/custom-controls";
+
+//================= COMPONENTS ====================
+// @import "~bootstrap-vue/src/components/avatar/index";
+// @import "~bootstrap-vue/src/components/calendar/index";
+// @import "~bootstrap-vue/src/components/card/index";
+// @import "~bootstrap-vue/src/components/dropdown/index";
+@import "~bootstrap-vue/src/components/form-checkbox/index";
+// @import "~bootstrap-vue/src/components/form-datepicker/index";
+// @import "~bootstrap-vue/src/components/form-file/index";
+@import "~bootstrap-vue/src/components/form-input/index";
+// @import "~bootstrap-vue/src/components/form-radio/index";
+// @import "~bootstrap-vue/src/components/form-rating/index";
+// @import "~bootstrap-vue/src/components/form-spinbutton/index";
+// @import "~bootstrap-vue/src/components/form-tags/index";
+// @import "~bootstrap-vue/src/components/form-timepicker/index";
+@import "~bootstrap-vue/src/components/input-group/index";
+// @import "~bootstrap-vue/src/components/media/index";
+@import "~bootstrap-vue/src/components/modal/index";
+// @import "~bootstrap-vue/src/components/nav/index";
+// @import "~bootstrap-vue/src/components/navbar/index";
+// @import "~bootstrap-vue/src/components/pagination-nav/index";
+// @import "~bootstrap-vue/src/components/pagination/index";
+// @import "~bootstrap-vue/src/components/popover/index";
+// @import "~bootstrap-vue/src/components/sidebar/index";
+// @import "~bootstrap-vue/src/components/skeleton/index";
+@import "~bootstrap-vue/src/components/table/index";
+// @import "~bootstrap-vue/src/components/time/index";
+// @import "~bootstrap-vue/src/components/toast/index";
+// @import "~bootstrap-vue/src/components/tooltip/index";
+
+//====================== ICONS ======================
+// @import "~bootstrap-vue/src/icons"
