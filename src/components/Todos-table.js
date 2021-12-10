@@ -63,6 +63,8 @@ export default {
       todo.unsavedChanges = false; 
     },
     changeTodoStatus(todo) {
+      this.cleanSearch('pendingList');
+      this.cleanSearch('completedList');
       if (todo.id){
         if (todo.done){
           this.setTodoAsCompleted(todo);
@@ -71,13 +73,16 @@ export default {
         }
       }
     },
-    removeTodo(todo, index, listType) {
+    removeTodo(todo, listType) {
+      this.cleanSearch(listType);
       if (listType === 'pendingList'){
+        const index = this.todosFiltered.findIndex(t => t.id === todo.id);
         this.todosFiltered.splice(index, 1);
         if (todo.id){
           this.deletePendingTodo(todo);
         }
       }else {
+        const index = this.todosCompletedFiltered.findIndex(t => t.id === todo.id);
         this.todosCompletedFiltered.splice(index, 1);
         if (todo.id){
           this.deleteCompletedTodo(todo);
@@ -105,6 +110,7 @@ export default {
               ...this.todosFiltered
             ]
           }
+          console.log(this.todosFilteredRef);
           this.todosFiltered = this.todosFilteredRef.filter(t => t.description.trim().toLowerCase().includes(this.searchPending));
           break;
         default:
