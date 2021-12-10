@@ -1,4 +1,5 @@
 import { mapState, mapMutations } from "vuex";
+import { v4 as uuid } from 'uuid';
 
 export default {
   name: 'TodosTable',
@@ -40,7 +41,8 @@ export default {
         id: '',
         description: '',
         done: false,
-        unsavedChanges: false
+        unsavedChanges: false,
+        reference: uuid()
       });
     },
     saveTodo(todo, listType) {
@@ -76,13 +78,13 @@ export default {
     removeTodo(todo, listType) {
       this.cleanSearch(listType);
       if (listType === 'pendingList'){
-        const index = this.todosFiltered.findIndex(t => t.id === todo.id);
+        const index = this.todosFiltered.findIndex(t => t.id ? t.id === todo.id : t.reference === todo.reference);
         this.todosFiltered.splice(index, 1);
         if (todo.id){
           this.deletePendingTodo(todo);
         }
       }else {
-        const index = this.todosCompletedFiltered.findIndex(t => t.id === todo.id);
+        const index = this.todosCompletedFiltered.findIndex(t => t.id ? t.id === todo.id : t.reference === todo.reference);
         this.todosCompletedFiltered.splice(index, 1);
         if (todo.id){
           this.deleteCompletedTodo(todo);
@@ -129,16 +131,20 @@ export default {
       switch (listType) {
         case 'pendingList':
           this.searchPending = '';
-          this.todosFiltered = [
-            ...this.todosFilteredRef
-          ]
+          if (this.todosFilteredRef.length){
+            this.todosFiltered = [
+              ...this.todosFilteredRef
+            ]
+          }
           this.todosFilteredRef = [];
           break;
         default:
           this.searchCompleted = '';
-          this.todosCompletedFiltered = [
-            ...this.todosCompletedFilteredRef
-          ]
+          if (this.todosCompletedFilteredRef){
+            this.todosCompletedFiltered = [
+              ...this.todosCompletedFilteredRef
+            ]
+          }
           this.todosCompletedFilteredRef = [];
           break;
       }
