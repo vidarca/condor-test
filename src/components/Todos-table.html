@@ -3,28 +3,52 @@
   <div class="row mx-0 flex-column flex-md-row align-items-start justify-content-center">
     <div class="table-container col-12 col-md-5">
       <div class="row align-items-center justify-content-between">
-        <h2>Pending Tasks</h2>
-        <b-form-input class="col-8" id="pending-search" type="search"></b-form-input>
+        <h3>Pending Tasks</h3>
+        <b-form-input class="input-search" id="pending-search" type="search" v-model="searchPending" @keyup="filterData('pendingList')"></b-form-input>
       </div>
       <ul class="todos" v-if="todosFiltered && todosFiltered.length">
         <li class="todos_item" v-for="(todo, index) in todosFiltered" :key="index">
-          <b-form-checkbox class="todos_item-checkbox" :id="'checkbox' + index" @change=(changeTodoStatus(todo)) :disabled="!todo.id">
+          <b-form-checkbox class="todos_item-checkbox" :id="'pending-checkbox' + index" @change=(changeTodoStatus(todo)) v-model="todo.done" :disabled="todo.id === '' ? true : false">
           </b-form-checkbox>
           <div class="todos_item-description">
-            <b-form-input :id="'description' + index" type="text" v-model="todo.description" :class="todo.description ? 'not-empty' : ''">
+            <b-form-input :id="'descriptionPending' + index" :ref="'descriptionPending' + index" type="text" v-model="todo.description" @keyup="todo.unsavedChanges = true" :class="todo.unsavedChanges ? 'not-empty' : ''">
             </b-form-input>
-            <i class="fas fa-times icon icon_cancel"></i>
-            <i class="fas fa-check icon icon_check"></i>
+            <i class="fas fa-pen icon icon_edit" @click="focusOnInput('descriptionPending' + index)"></i>
+            <i class="fas fa-times icon icon_cancel" @click="cleanTodoDescription(todo)"></i>
+            <i class="fas fa-check icon icon_check" @click="saveTodo(todo)"></i>
           </div>
-          <i class="fas fa-trash-alt icon todos_item-delete"></i>
+          <i class="fas fa-trash-alt icon todos_item-delete" @click="removeTodo(todo, index, 'pendingList')"></i>
         </li>
       </ul>
+      <div class="noData" v-else>
+        No tasks here
+      </div>
       <b-button class="btn-add" @click="createEmptyTodo()">
         <i class="fas fa-plus"></i>
       </b-button>
     </div>
     <div class="table-container col-12 col-md-5">
-      <b-table striped hover :fields="[]" :items="todosCompletedFiltered"></b-table>
+      <div class="row align-items-center justify-content-between">
+        <h3>Completed Tasks</h3>
+        <b-form-input class="input-search" id="completed-search" v-model="searchCompleted" type="search" @keyup="filterData('completedList')"></b-form-input>
+      </div>
+      <ul class="todos" v-if="todosCompletedFiltered && todosCompletedFiltered.length">
+        <li class="todos_item" v-for="(todo, index) in todosCompletedFiltered" :key="index">
+          <b-form-checkbox class="todos_item-checkbox" :id="'completed-checkbox' + index" @change=(changeTodoStatus(todo)) v-model="todo.done">
+          </b-form-checkbox>
+          <div class="todos_item-description">
+            <b-form-input :id="'descriptionCompleted' + index" :ref="'descriptionCompleted' + index" type="text" v-model="todo.description" @keyup="todo.unsavedChanges = true" :class="todo.unsavedChanges ? 'not-empty' : ''">
+            </b-form-input>
+            <i class="fas fa-pen icon icon_edit" @click="focusOnInput('descriptionCompleted' + index)"></i>
+            <i class="fas fa-times icon icon_cancel" @click="cleanTodoDescription(todo)"></i>
+            <i class="fas fa-check icon icon_check" @click="saveTodo(todo)"></i>
+          </div>
+          <i class="fas fa-trash-alt icon todos_item-delete" @click="removeTodo(todo, index, 'completedList')"></i>
+        </li>
+      </ul>
+      <div class="noData" v-else>
+        No tasks here
+      </div>
     </div>
   </div>
 </section>

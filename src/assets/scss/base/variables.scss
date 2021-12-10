@@ -4,9 +4,23 @@ $secondary: rgb(87, 179, 255);
 $c-color0: #ccc;
 $c-color1: #c1c1c1;
 $c-color2: #f2f2f2;
+$c-color3: #c02915;
+$c-color4: #ebeb37;
 
 $black: #000;
 $white: #fff;
 
 /* Fonts */
 $font-family-base: 'Roboto' sans-seif;
+
+/* Font sizes */
+$font-size-normal: 18px;
+
+/* Font weights */
+$font-weight-bold: 800;
+$font-weight-thin: 400;
+$font-weight-medium: 600;
+
+/* Breakpoints */
+$md: 768px;
+$lg: 992px;

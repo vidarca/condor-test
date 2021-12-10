@@ -12,14 +12,44 @@ export default new Vuex.Store({
   mutations: {
     addTodo(state, todo) {
       todo.id = uuid();
-      state.todos.push(todo);
+      const date = new Date();
+      todo.createdDate = Date.UTC(
+        date.getFullYear(),
+        date.getMonth() + 1,
+        date.getDate(),
+        date.getHours(),
+        date.getMinutes(),
+        date.getMilliseconds()
+      );
+      state.todos.unshift(todo);
+    },
+    editTodoPending(state, todo) {
+      if (todo) {
+        const index = state.todos.findIndex(t => t.id === todo.id);
+        if (index > -1) {
+          state.todos[index] = {
+            ...todo
+          }
+        }
+      }
+    },
+    editTodoCompleted(state, todo) {
+      if (todo) {
+        const index = state.todosCompleted.findIndex(t => t.id === todo.id);
+        if (index > -1) {
+          state.todosCompleted[index] = {
+            ...todo
+          }
+        }
+      }
     },
     setTodoAsCompleted(state, todo){
       if (todo){
         const index = state.todos.findIndex(t => t.id === todo.id);
         if (index > -1){
+          state.todos[index].done = todo.done;
           state.todosCompleted.unshift({ ...state.todos[index] })
-          state.todos.slice(index, 1);
+          state.todos.splice(index, 1);
         }
       }
     },
@@ -27,26 +57,25 @@ export default new Vuex.Store({
       if (todo){
         const index = state.todosCompleted.findIndex(t => t.id === todo.id);
         if (index > -1){
-          state.todos.unshift({ ...state.todos[index] })
-          state.todosCompleted.slice(index, 1);
+          state.todosCompleted[index].done = todo.done;
+          state.todos.unshift({ ...state.todosCompleted[index] })
+          state.todosCompleted.splice(index, 1);
         }
       }
     },
-    deleteTodo(state, todo){
+    deletePendingTodo(state, todo){
       if (todo){
         const index = state.todos.findIndex(t => t.id === todo.id);
         if (index > -1){
-          state.todos.slice(index, 1);
+          state.todos.splice(index, 1);
         }
       }
     },
-    editTodo(state, todo) {
-      if (todo) {
-        const index = state.todos.findIndex(t => t.id === todo.id);
-        if (index > -1) {
-          state.todos[index] = {
-            ...todo
-          }
+    deleteCompletedTodo(state, todo){
+      if (todo){
+        const index = state.todosCompleted.findIndex(t => t.id === todo.id);
+        if (index > -1){
+          state.todosCompleted.splice(index, 1);
         }
       }
     }

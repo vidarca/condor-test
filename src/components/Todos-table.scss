@@ -1,19 +1,52 @@
 @import '/src/assets/scss/base.scss';
 
+.todos-table {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  >.row {
+    margin: 20px;
+    width: 100%;
+  }
+}
+
 .table-container {
   padding: calculateRem(20px);
   border: 1px solid $c-color2;
-  &:first-child {
-    margin-right: calculateRem(10px);
+  max-width: calc(100% - 2 * calculateRem(20px));
+  margin-bottom: 20px;
+
+  @include media-breakpoint-up($md) {
+    &:first-child {
+      margin-right: calculateRem(10px);
+    }
+    margin-bottom: 0;
   }
   .row {
     margin-left: 0;
     margin-right: 0;
     margin-bottom: 10px;
-    h2 {
-      margin-right: 0.5rem;
+    h3, .input-search {
+      flex: 0 0 100%;
+      max-width: 100%;
+      text-align: center;
+    }
+    @include media-breakpoint-up($lg) {
+      h3 {
+        margin-right: 0.5rem;
+        flex: 0 0 55%;
+        max-width: calc(55% - 2 * 0.5rem);
+        text-align: left;
+      }
+      .input-search {
+        flex: 0 0 45%;
+        max-width: 45%;
+        text-align: left;
+      }
     }
   }
+  
   .todos {
     width: 100%;
     &_item {
@@ -31,6 +64,10 @@
         position: relative;
         width: calc(100% - 70px);
 
+        .icon:not(.icon_edit){
+          display: none;
+        }
+
         .icon {
           position: absolute;
           right: 15px;
@@ -38,21 +75,48 @@
           width: 20px;
           height: 20px;
           line-height: 20px;
-          display: none;
+
+          &_edit:hover {
+            color: $c-color4;
+          }
 
           &_cancel {
             right: 40px;
+            &:hover {
+              color: $c-color3;
+            }
+          }
+
+          &_check:hover {
+            color: $secondary;
           }
         }
 
         input {
           width: calc(100% - 2 * 0.75rem - 2px);
+          position: relative;
+          &::before {
+            content: "\f304";
+            position: absolute;
+            right: 15px;
+            bottom: 9px;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+          }
+
+          &:focus ~ .icon_edit {
+            display: none;
+          }
           
           &.not-empty {
             width: calc(100% - 0.75rem - 60px - 2px);
             padding-right: 60px;
-            & ~ .icon {
+            & ~ .icon:not(.icon_edit) {
               display: block;
+            }
+            ~ .icon_edit {
+              display: none;
             }
           }
         }
@@ -64,6 +128,9 @@
         line-height: 26px;
         font-size: 20px;
         margin-top: 6px;
+        &:hover {
+          color: $c-color3;
+        }
       }
     }
   }
