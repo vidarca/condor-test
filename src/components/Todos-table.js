@@ -119,6 +119,24 @@ export default {
     },
     focusOnInput(key){
       this.$refs[key][0].focus();
+    },
+    cleanSearch(listType){
+      switch (listType) {
+        case 'pendingList':
+          this.searchPending = '';
+          this.todosFiltered = [
+            ...this.todosFilteredRef
+          ]
+          this.todosFilteredRef = [];
+          break;
+        default:
+          this.searchCompleted = '';
+          this.todosCompletedFiltered = [
+            ...this.todosCompletedFilteredRef
+          ]
+          this.todosCompletedFiltered = [];
+          break;
+      }
     }
   }
 }

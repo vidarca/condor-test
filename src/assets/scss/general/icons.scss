@@ -5,4 +5,15 @@
   -o-transition: 400ms color ease;
   -moz-transition: 400ms color ease;
   -webkit-transition: 400ms color ease;
+  &_edit:hover {
+    color: $c-color4;
+  }
+
+  &_cancel:hover {
+    color: $c-color3;
+  }
+
+  &_check:hover {
+    color: $secondary;
+  }
 }

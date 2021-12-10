@@ -4,7 +4,10 @@
     <div class="table-container col-12 col-md-5">
       <div class="row align-items-center justify-content-between">
         <h3>Pending Tasks</h3>
-        <b-form-input class="input-search" id="pending-search" type="search" v-model="searchPending" @keyup="filterData('pendingList')"></b-form-input>
+        <div class="input-search">
+          <b-form-input id="pending-search" type="text" v-model="searchPending" @keyup="filterData('pendingList')" :class="searchPending !== '' ? 'not-empty' : ''"></b-form-input>
+          <i class="fas fa-times icon icon_cancel" @click="cleanSearch('pendingList')"></i>
+        </div>
       </div>
       <ul class="todos" v-if="todosFiltered && todosFiltered.length">
         <li class="todos_item" v-for="(todo, index) in todosFiltered" :key="index">
@@ -30,7 +33,10 @@
     <div class="table-container col-12 col-md-5">
       <div class="row align-items-center justify-content-between">
         <h3>Completed Tasks</h3>
-        <b-form-input class="input-search" id="completed-search" v-model="searchCompleted" type="search" @keyup="filterData('completedList')"></b-form-input>
+        <div class="input-search">
+          <b-form-input id="completed-search" v-model="searchCompleted" type="text" @keyup="filterData('completedList')" :class="searchCompleted !== '' ? 'not-empty' : ''"></b-form-input>
+          <i class="fas fa-times icon icon_cancel" @click="cleanSearch('completedList')"></i>
+        </div>
       </div>
       <ul class="todos" v-if="todosCompletedFiltered && todosCompletedFiltered.length">
         <li class="todos_item" v-for="(todo, index) in todosCompletedFiltered" :key="index">
