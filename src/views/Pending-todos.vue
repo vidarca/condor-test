@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import TodosTable from '../components/Todos-table.vue';
+import TodosTable from '../components/TodosTable.vue';
 
 export default {
   name: "PendingTodos",
