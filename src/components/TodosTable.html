@@ -34,7 +34,7 @@
       <div class="row align-items-center justify-content-between">
         <h3>Completed Tasks</h3>
         <div class="input-search">
-          <b-form-input id="completed-search" v-model="searchCompleted" placeholder="Filter completed task" type="text" @keyup="filterData('completedList')" :class="searchCompleted !== '' ? 'not-empty' : ''"></b-form-input>
+          <b-form-input id="completed-search" v-model="searchCompleted" placeholder="Filter completed tasks" type="text" @keyup="filterData('completedList')" :class="searchCompleted !== '' ? 'not-empty' : ''"></b-form-input>
           <i class="fas fa-times icon icon_cancel" @click="cleanSearch('completedList')"></i>
         </div>
       </div>
