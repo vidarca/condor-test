@@ -5,7 +5,7 @@
       <div class="row align-items-center justify-content-between">
         <h3>Pending Tasks</h3>
         <div class="input-search">
-          <b-form-input id="pending-search" type="text" v-model="searchPending" @keyup="filterData('pendingList')" :class="searchPending !== '' ? 'not-empty' : ''"></b-form-input>
+          <b-form-input id="pending-search" type="text" v-model="searchPending" @keyup="filterData('pendingList')" :class="searchPending !== '' ? 'not-empty' : ''" placeholder="Filter pending tasks"></b-form-input>
           <i class="fas fa-times icon icon_cancel" @click="cleanSearch('pendingList')"></i>
         </div>
       </div>
@@ -14,7 +14,7 @@
           <b-form-checkbox class="todos_item-checkbox" :id="'pending-checkbox' + index" @change=(changeTodoStatus(todo)) v-model="todo.done" :disabled="todo.id === '' ? true : false">
           </b-form-checkbox>
           <div class="todos_item-description">
-            <b-form-input :id="'descriptionPending' + index" :ref="'descriptionPending' + index" type="text" v-model="todo.description" @keyup="todo.unsavedChanges = true" :class="todo.unsavedChanges ? 'not-empty' : ''">
+            <b-form-input :id="'descriptionPending' + index" :ref="'descriptionPending' + index" placeholder="Description" type="text" v-model="todo.description" @keyup="todo.unsavedChanges = true" :class="todo.unsavedChanges ? 'not-empty' : ''">
             </b-form-input>
             <i class="fas fa-pen icon icon_edit" @click="focusOnInput('descriptionPending' + index)"></i>
             <i class="fas fa-times icon icon_cancel" @click="cleanTodoDescription(todo)"></i>
@@ -34,7 +34,7 @@
       <div class="row align-items-center justify-content-between">
         <h3>Completed Tasks</h3>
         <div class="input-search">
-          <b-form-input id="completed-search" v-model="searchCompleted" type="text" @keyup="filterData('completedList')" :class="searchCompleted !== '' ? 'not-empty' : ''"></b-form-input>
+          <b-form-input id="completed-search" v-model="searchCompleted" placeholder="Filter completed task" type="text" @keyup="filterData('completedList')" :class="searchCompleted !== '' ? 'not-empty' : ''"></b-form-input>
           <i class="fas fa-times icon icon_cancel" @click="cleanSearch('completedList')"></i>
         </div>
       </div>
@@ -43,7 +43,7 @@
           <b-form-checkbox class="todos_item-checkbox" :id="'completed-checkbox' + index" @change=(changeTodoStatus(todo)) v-model="todo.done">
           </b-form-checkbox>
           <div class="todos_item-description">
-            <b-form-input :id="'descriptionCompleted' + index" :ref="'descriptionCompleted' + index" type="text" v-model="todo.description" @keyup="todo.unsavedChanges = true" :class="todo.unsavedChanges ? 'not-empty' : ''">
+            <b-form-input :id="'descriptionCompleted' + index" :ref="'descriptionCompleted' + index" type="text" v-model="todo.description" @keyup="todo.unsavedChanges = true" :class="todo.unsavedChanges ? 'not-empty' : ''" placeholder="Description">
             </b-form-input>
             <i class="fas fa-pen icon icon_edit" @click="focusOnInput('descriptionCompleted' + index)"></i>
             <i class="fas fa-times icon icon_cancel" @click="cleanTodoDescription(todo)"></i>
