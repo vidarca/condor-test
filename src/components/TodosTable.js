@@ -140,7 +140,7 @@ export default {
           break;
         default:
           this.searchCompleted = '';
-          if (this.todosCompletedFilteredRef){
+          if (this.todosCompletedFilteredRef.length){
             this.todosCompletedFiltered = [
               ...this.todosCompletedFilteredRef
             ]
