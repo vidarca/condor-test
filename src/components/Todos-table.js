@@ -134,7 +134,7 @@ export default {
           this.todosCompletedFiltered = [
             ...this.todosCompletedFilteredRef
           ]
-          this.todosCompletedFiltered = [];
+          this.todosCompletedFilteredRef = [];
           break;
       }
     }
