@@ -110,8 +110,7 @@ export default {
               ...this.todosFiltered
             ]
           }
-          console.log(this.todosFilteredRef);
-          this.todosFiltered = this.todosFilteredRef.filter(t => t.description.trim().toLowerCase().includes(this.searchPending));
+          this.todosFiltered = this.todosFilteredRef.filter(t => t.description.trim().toLowerCase().includes(this.searchPending.toLowerCase().trim()));
           break;
         default:
           if (!this.todosCompletedFilteredRef.length){
@@ -119,7 +118,7 @@ export default {
               ...this.todosCompletedFiltered
             ]
           }
-          this.todosCompletedFiltered = this.todosCompletedFilteredRef.filter(t => t.description.trim().toLowerCase().includes(this.searchCompleted));
+          this.todosCompletedFiltered = this.todosCompletedFilteredRef.filter(t => t.description.trim().toLowerCase().includes(this.searchCompleted.toLowerCase().trim()));
           break;
       }
     },
